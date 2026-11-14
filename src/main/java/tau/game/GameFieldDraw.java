@@ -65,7 +65,7 @@ public class GameFieldDraw {
         for (int y = field.getHeight() - 1; y >= 0; y--) {
             System.out.print("✕");
             for (int x = 0; x < field.getWidth(); x++) {
-                drawUnit(field.unitsOnField[y][x]);
+                drawUnit(field.tiles[y][x].getUnit());
             }
             System.out.println("  ✕");
         }
