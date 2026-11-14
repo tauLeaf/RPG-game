@@ -2,7 +2,6 @@ package tau.game.util;
 
 import tau.game.GameField;
 import tau.game.Tile;
-import tau.game.units.Unit;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -32,12 +31,13 @@ public class MathOperations {
      */
     // ИЗИ ПРОСТО ЛЕГЧАЙШЕ РЕШИЛ ЗА 1.5 ЧАСА РАБОТАЕТ ПОЧТИ С ПЕРВОЙ ПОПЫТКИ
     //TODO: ОПТИМИЗИРОВАТЬ ЭТУ КАКУ
-    public static void BFS(GameField field, Point start) {
+    public static Point BFS(GameField field, Point start) {
         int width = field.getWidth();
         int height = field.getHeight();
 
         Tile[][] tiles = field.tiles;
         boolean[][] checkedTiles = new boolean[height][width];
+
         Point[][] paths = new Point[height][width];
         paths[start.getY()][start.getX()] = null;
         ArrayList<Point> path = new ArrayList<>();
@@ -71,7 +71,7 @@ public class MathOperations {
                         for (Point point : path.reversed()) {
                             System.out.print(point + " ");
                         }
-                        return;
+                        return new Point(x - 1, y);
                     }
                 }
             }
@@ -93,7 +93,7 @@ public class MathOperations {
                         for (Point point : path.reversed()) {
                             System.out.print(point + " ");
                         }
-                        return;
+                        return new Point(x, y + 1);
                     }
                 }
             }
@@ -115,7 +115,7 @@ public class MathOperations {
                         for (Point point : path.reversed()) {
                             System.out.print(point + " ");
                         }
-                        return;
+                        return new Point(x + 1, y);
                     }
                 }
             }
@@ -137,10 +137,12 @@ public class MathOperations {
                         for (Point point : path.reversed()) {
                             System.out.print(point + " ");
                         }
-                        return;
+                        return new Point(x, y - 1);
                     }
                 }
             }
         }
+        System.out.println("Enemy has not found...");
+        return new Point(-9999, -9999);
     }
 }

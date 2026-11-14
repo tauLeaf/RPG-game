@@ -1,7 +1,6 @@
 package tau.game;
 
 import tau.game.goals.SwordsmanGoals;
-import tau.game.units.infantrymen.factory.IroncladFactory;
 import tau.game.units.infantrymen.factory.SwordsmanFactory;
 import tau.game.util.MathOperations;
 import tau.game.util.Point;
