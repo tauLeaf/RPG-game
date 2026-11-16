@@ -10,24 +10,26 @@ public class GameField {
     private int width;
     private int height;
 
-    public ArrayList<Unit> units;
-    public Unit[][] unitsOnField;
+    private ArrayList<Unit> units;
+    public Tile[][] tiles;
     private int maxUnits;
 
-    public GameField(int width, int height, int maxUnits) {
+    public GameField(int width, int height) {
         if (width < 0 || height < 0) {
-            System.out.println("Error: width and height is not available.");
-            return;
-        }
-        if (maxUnits < 0 || maxUnits > width * height) {
-            System.out.println("Error: maxUnits is not available.");
+            System.out.println("Error: width or height is not available.");
             return;
         }
         this.width = width;
         this.height = height;
-        this.maxUnits = maxUnits;
+        this.maxUnits = width * height;
         this.units = new ArrayList<Unit>();
-        unitsOnField = new Unit[height][width];
+
+        this.tiles = new Tile[height][width];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                tiles[y][x] = new Tile(null, null);
+            }
+        }
     }
 
     public int getWidth() {
@@ -47,7 +49,7 @@ public class GameField {
         }
         Unit unit = factory.createUnit(x, y);
         units.add(unit);
-        unitsOnField[y][x] = unit;
+        (tiles[y][x]).setUnit(unit);
 
         GameFieldDraw.drawUnits();
     }
@@ -57,9 +59,10 @@ public class GameField {
     }
 
     public void removeUnit(int x, int y) {
-        if (unitsOnField[y][x] != null) {
-            units.remove(unitsOnField[y][x]);
-            unitsOnField[y][x] = null;
+        Unit unit = tiles[y][x].getUnit();
+        if (unit != null) {
+            units.remove(unit);
+            tiles[y][x].setUnit(null);
         }
     }
 
@@ -69,46 +72,46 @@ public class GameField {
         int x = unit.getX();
         int y = unit.getY();
 
-        Unit temporaryRef = unitsOnField[y][x];
-        unitsOnField[y][x] = null;
+        Unit temporaryRef = tiles[y][x].getUnit();
+        tiles[y][x].setUnit(null);
         switch (moveUnit.getDirection()) {
             case UP -> {
                 if (y + speed > height - 1) {
-                    unitsOnField[height - 1][x] = temporaryRef;
+                    tiles[height - 1][x].setUnit(temporaryRef);
                     unit.setY(height - 1);
                 }
                 else {
-                    unitsOnField[y + speed][x] = temporaryRef;
+                    tiles[y + speed][x].setUnit(temporaryRef);
                     unit.setY(y + speed);
                 }
             }
             case DOWN -> {
                 if (y - speed < 0) {
-                    unitsOnField[0][x] = temporaryRef;
+                    tiles[0][x].setUnit(temporaryRef);
                     unit.setY(0);
                 }
                 else {
-                    unitsOnField[y - speed][x] = temporaryRef;
+                    tiles[y - speed][x].setUnit(temporaryRef);
                     unit.setY(y - speed);
                 }
             }
             case LEFT -> {
                 if (x - speed < 0) {
-                    unitsOnField[y][0] = temporaryRef;
+                    tiles[y][0].setUnit(temporaryRef);
                     unit.setX(0);
                 }
                 else {
-                    unitsOnField[y][x - speed] = temporaryRef;
+                    tiles[y][x - speed].setUnit(temporaryRef);
                     unit.setX(x - speed);
                 }
             }
             case RIGHT -> {
                 if (x + speed > width - 1) {
-                    unitsOnField[y][width - 1] = temporaryRef;
+                    tiles[y][width - 1].setUnit(temporaryRef);
                     unit.setX(width - 1);
                 }
                 else {
-                    unitsOnField[y][x + speed] = temporaryRef;
+                    tiles[y][x + speed].setUnit(temporaryRef);
                     unit.setX(x + speed);
                 }
             }
@@ -134,7 +137,7 @@ public class GameField {
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                unitsOnField[y][x] = null;
+                tiles[y][x] = null;
             }
         }
     }
