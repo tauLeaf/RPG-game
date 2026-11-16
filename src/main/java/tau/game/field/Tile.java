@@ -1,40 +1,43 @@
 package tau.game.field;
 
-import tau.game.field.terrain.TerrainType;
+import tau.game.field.terrain.Terrain;
 import tau.game.units.Unit;
 
 public class Tile {
     private Unit unit;
-    private TerrainType terrainType;
+    private Terrain terrain;
 
-    public Tile(TerrainType terrainType) {
+    public Tile(Terrain terrain) {
         this.unit = null;
-        this.terrainType = terrainType;
+        this.terrain = terrain;
     }
 
-    public Tile(Unit unit, TerrainType terrainType) {
+    public Tile(Unit unit, Terrain terrain) {
         this.unit = unit;
-        this.terrainType = terrainType;
+        this.terrain = terrain;
     }
 
     public Unit getUnit() {
         return unit;
     }
 
-    public TerrainType getTerrainType() {
-        return terrainType;
+    public Terrain getTerrain() {
+        return terrain;
     }
 
     public void setUnit(Unit unit) {
         this.unit = unit;
     }
 
-    public void setTerrainType(TerrainType terrainType) {
-        this.terrainType = terrainType;
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
     }
 
     public Tile clone() {
-        return new Tile(unit.clone(), terrainType);
+        if (unit == null) {
+            return new Tile(null, terrain);
+        }
+        return new Tile(unit.clone(), terrain);
     }
 }
 

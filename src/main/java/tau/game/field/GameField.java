@@ -1,5 +1,7 @@
 package tau.game.field;
 
+import tau.game.field.terrain.Flat;
+import tau.game.field.terrain.Forest;
 import tau.game.util.GameFieldIterator;
 import tau.game.attribute.Move;
 import tau.game.units.Unit;
@@ -29,7 +31,7 @@ public class GameField implements Iterable<Unit> {
         this.tiles = new Tile[height][width];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tiles[y][x] = new Tile(null, null);
+                tiles[y][x] = new Tile(null, new Flat());
             }
         }
     }
@@ -44,14 +46,11 @@ public class GameField implements Iterable<Unit> {
 
     public void addUnit(UnitFactory factory, int x, int y) {
         if (units.size() == maxUnits) {
-            System.out.println("Error: maxUnits have been reached.");
-            return;
+            throw new IllegalStateException("Error: Unit limit exceeded");
         }
         Unit unit = factory.createUnit(x, y);
         units.add(unit);
-        (tiles[y][x]).setUnit(unit);
-
-        GameFieldDraw.drawUnits();
+        tiles[y][x].setUnit(unit);
     }
 
     public Unit getUnit(int index) {
@@ -68,7 +67,6 @@ public class GameField implements Iterable<Unit> {
             units.remove(unit);
             tiles[unit.getY()][unit.getX()].setUnit(null);
         }
-        GameFieldDraw.drawUnits();
     }
 
     public void removeUnit(int x, int y) {
@@ -77,7 +75,6 @@ public class GameField implements Iterable<Unit> {
             units.remove(unit);
             tiles[y][x].setUnit(null);
         }
-        GameFieldDraw.drawUnits();
     }
 
     public void moveUnit(Unit unit) {
@@ -130,13 +127,12 @@ public class GameField implements Iterable<Unit> {
                 }
             }
         }
-        GameFieldDraw.drawUnits();
     }
 
-    public GameField copyGameField(GameField field) {
+    public GameField copyGameField() {
         GameField newField = new GameField(width, height);
 
-        for (Unit unit : field.units) {
+        for (Unit unit : this.units) {
             newField.units.add(unit.clone());
         }
 

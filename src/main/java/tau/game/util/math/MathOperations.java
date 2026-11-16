@@ -1,4 +1,4 @@
-package tau.game.util;
+package tau.game.util.math;
 
 import tau.game.field.GameField;
 import tau.game.field.Tile;
@@ -25,12 +25,7 @@ public class MathOperations {
         return false;
     }
 
-    /*
-        ОКАЗЫВАЕТСЯ, СОЗДАНИЕ ИНТЕРЕСНОГО ИИ В ИГРАХ - ЭТО ПРОСТО ПРИДУМЫВАНИЕ НАБОР ПРАВИЛ, КОТОРЫЕ БУДУТ ПОДХОДЯЩИМИ
-        В ДАННОЙ ИГРЕ И СДЕЛАЮТ ГЕЙМПЛЕЙ УВЛЕКАТЕЛЬНЫМ.
-     */
-    // ИЗИ ПРОСТО ЛЕГЧАЙШЕ РЕШИЛ ЗА 1.5 ЧАСА РАБОТАЕТ ПОЧТИ С ПЕРВОЙ ПОПЫТКИ
-    //TODO: ОПТИМИЗИРОВАТЬ ЭТУ КАКУ
+    //TODO: ОПТИМИЗИРОВАТЬ
     public static Point BFS(GameField field, Point start) {
         int width = field.getWidth();
         int height = field.getHeight();

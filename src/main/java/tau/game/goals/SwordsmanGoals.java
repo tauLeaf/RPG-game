@@ -26,25 +26,3 @@ public class SwordsmanGoals extends Goals {
 
 
 }
-
-
-//
-//if (x == field.getWidth()) {
-//
-//        }
-//
-//        if (field.unitsOnField[y][x - 1] != null) {
-//        return true;
-//        }
-//        else if (field.unitsOnField[y][x + 1] != null) {
-//        return true;
-//        }
-//        else if (field.unitsOnField[y + 1][x] != null) {
-//        return true;
-//        }
-//        else if (field.unitsOnField[y - 1][x] != null) {
-//        return true;
-//        }
-//        else {
-//        return false;
-//        }

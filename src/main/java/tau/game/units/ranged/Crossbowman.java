@@ -27,4 +27,9 @@ public class Crossbowman extends RangedUnit {
     public UnitsType getType() {
         return UnitsType.CROSSBOWMAN;
     }
+
+    @Override
+    public String toString() {
+        return "This is Crossbowman in (" + this.getX() + ", " + this.getY() + ")";
+    }
 }

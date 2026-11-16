@@ -27,4 +27,9 @@ public class Ironclad extends Infantry {
     public UnitsType getType() {
         return UnitsType.IRONCLAD;
     }
+
+    @Override
+    public String toString() {
+        return "This is Ironclad in (" + this.getX() + ", " + this.getY() + ")";
+    }
 }

@@ -44,6 +44,6 @@ public class Swordsman extends Infantry {
 
     @Override
     public String toString() {
-        return "This is Swordsman";
+        return "This is Swordsman in (" + this.getX() + ", " + this.getY() + ")";
     }
 }

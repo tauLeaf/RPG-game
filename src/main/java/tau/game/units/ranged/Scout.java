@@ -27,4 +27,9 @@ public class Scout extends RangedUnit {
     public UnitsType getType() {
         return UnitsType.SCOUT;
     }
+
+    @Override
+    public String toString() {
+        return "This is Scout in (" + this.getX() + ", " + this.getY() + ")";
+    }
 }

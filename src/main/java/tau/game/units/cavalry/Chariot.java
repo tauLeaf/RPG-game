@@ -26,4 +26,9 @@ public class Chariot extends Cavalry {
     public UnitsType getType() {
         return UnitsType.CHARIOT;
     }
+
+    @Override
+    public String toString() {
+        return "This is Chariot in (" + this.getX() + ", " + this.getY() + ")";
+    }
 }

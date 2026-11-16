@@ -26,4 +26,9 @@ public class Horseman extends Cavalry {
     public UnitsType getType() {
         return UnitsType.HORSEMAN;
     }
+
+    @Override
+    public String toString() {
+        return "This is Horseman in (" + this.getX() + ", " + this.getY() + ")";
+    }
 }

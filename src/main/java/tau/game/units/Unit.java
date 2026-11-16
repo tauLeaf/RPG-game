@@ -7,6 +7,7 @@ public abstract class Unit {
     protected Armor armor;
     protected Attack attack;
     protected Move move;
+    protected int id;
 
     protected int x;
     protected int y;

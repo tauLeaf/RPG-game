@@ -1,4 +1,4 @@
-package tau.game.util;
+package tau.game.util.math;
 
 public class Point {
     private int x;
