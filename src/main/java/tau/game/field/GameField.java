@@ -1,18 +1,20 @@
-package tau.game;
+package tau.game.field;
 
+import tau.game.util.GameFieldIterator;
 import tau.game.attribute.Move;
 import tau.game.units.Unit;
 import tau.game.units.UnitFactory;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class GameField {
+public class GameField implements Iterable<Unit> {
     private int width;
     private int height;
+    private int maxUnits;
 
     private ArrayList<Unit> units;
     public Tile[][] tiles;
-    private int maxUnits;
 
     public GameField(int width, int height) {
         if (width < 0 || height < 0) {
@@ -40,8 +42,6 @@ public class GameField {
         return height;
     }
 
-    //TODO: реализовать интерфейс Iterator<Unit> (можно в виде внутреннего класса)
-
     public void addUnit(UnitFactory factory, int x, int y) {
         if (units.size() == maxUnits) {
             System.out.println("Error: maxUnits have been reached.");
@@ -58,12 +58,26 @@ public class GameField {
         return units.get(index);
     }
 
+    public Unit getUnit(int x, int y) {
+        return tiles[y][x].getUnit();
+    }
+
+    public void removeUnit(int index) {
+        Unit unit = units.get(index);
+        if (unit != null) {
+            units.remove(unit);
+            tiles[unit.getY()][unit.getX()].setUnit(null);
+        }
+        GameFieldDraw.drawUnits();
+    }
+
     public void removeUnit(int x, int y) {
         Unit unit = tiles[y][x].getUnit();
         if (unit != null) {
             units.remove(unit);
             tiles[y][x].setUnit(null);
         }
+        GameFieldDraw.drawUnits();
     }
 
     public void moveUnit(Unit unit) {
@@ -119,10 +133,21 @@ public class GameField {
         GameFieldDraw.drawUnits();
     }
 
-//    public GameField copyGameField(GameField field) {
-//
-//        return
-//    }
+    public GameField copyGameField(GameField field) {
+        GameField newField = new GameField(width, height);
+
+        for (Unit unit : field.units) {
+            newField.units.add(unit.clone());
+        }
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                newField.tiles[y][x] = tiles[y][x].clone();
+            }
+        }
+
+        return newField;
+    }
 
     public int size() {
         return units.size();
@@ -142,7 +167,8 @@ public class GameField {
         }
     }
 
-    public void unitIterator() {
-
+    @Override
+    public Iterator<Unit> iterator() {
+        return new GameFieldIterator(this);
     }
 }

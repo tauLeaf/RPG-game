@@ -25,8 +25,9 @@ public class Health {
         if (amount < 0) {
             throw new IllegalArgumentException("The value of the decrease amount is < 0");
         }
-        if (this.amount < amount) {
+        if (amount > this.amount) {
             this.amount = 0;
+            System.out.println("Over damage");
             return;
         }
         this.amount -= amount;

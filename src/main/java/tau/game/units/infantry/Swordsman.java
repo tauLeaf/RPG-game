@@ -1,11 +1,10 @@
-package tau.game.units.infantrymen;
+package tau.game.units.infantry;
 
 import tau.game.attribute.*;
 import tau.game.units.Unit;
+import tau.game.units.UnitsType;
 
-import java.util.Random;
-
-public class Swordsman extends Infantryman {
+public class Swordsman extends Infantry {
     public Swordsman(int x, int y) {
         super(x, y);
 
@@ -31,5 +30,20 @@ public class Swordsman extends Infantryman {
     public void defend() {
         armor.increaseArmor();
         System.out.println("Swordsman is defending: now its armor is " + armor.getAmount());
+    }
+
+    @Override
+    public Unit clone() {
+        return new Swordsman(this.x, this.y);
+    }
+
+    @Override
+    public UnitsType getType() {
+        return UnitsType.SWORDSMAN;
+    }
+
+    @Override
+    public String toString() {
+        return "This is Swordsman";
     }
 }

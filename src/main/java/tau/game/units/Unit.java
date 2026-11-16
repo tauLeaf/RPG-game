@@ -11,6 +11,11 @@ public abstract class Unit {
     protected int x;
     protected int y;
 
+    public Unit(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public Health getHealth() {
         return health;
     }
@@ -21,10 +26,6 @@ public abstract class Unit {
 
     public Attack getAttack() {
         return attack;
-    }
-
-    public void receiveDamage(int damage) {
-        health.decrease(damage);
     }
 
     public Move getMove() {
@@ -47,5 +48,11 @@ public abstract class Unit {
         this.y = y;
     }
 
-    //    public abstract Unit clone();
+    public void receiveDamage(int damage) {
+        health.decrease(damage);
+    }
+
+    public abstract Unit clone();
+
+    public abstract UnitsType getType();
 }
