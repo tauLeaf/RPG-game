@@ -5,6 +5,9 @@ public class Move {
     private int speed;
 
     public Move(Direction direction, int speed) {
+        if (speed < 0) {
+            throw new IllegalArgumentException("The value of the speed is < 0");
+        }
         this.direction = direction;
         this.speed = speed;
     }

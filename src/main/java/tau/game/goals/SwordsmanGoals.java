@@ -1,12 +1,6 @@
 package tau.game.goals;
 
-import tau.game.GameField;
-import tau.game.units.Unit;
-import tau.game.units.infantrymen.Swordsman;
-import tau.game.util.MathOperations;
-
-import java.awt.*;
-import java.util.ArrayDeque;
+import tau.game.field.GameField;
 
 public class SwordsmanGoals extends Goals {
 

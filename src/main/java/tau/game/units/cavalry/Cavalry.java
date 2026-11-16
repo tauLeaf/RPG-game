@@ -1,18 +1,14 @@
 package tau.game.units.cavalry;
 
+import tau.game.units.Attackable;
 import tau.game.units.Unit;
 
-public class Cavalry extends Unit {
+public abstract class Cavalry extends Unit implements Attackable {
     public Cavalry(int x, int y) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
     }
 
-    public void attack() {
+    public abstract void attack(Unit enemy);
 
-    }
-
-    public void defend() {
-
-    }
+    public abstract void defend();
 }

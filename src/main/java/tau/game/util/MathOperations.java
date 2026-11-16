@@ -1,7 +1,7 @@
 package tau.game.util;
 
-import tau.game.GameField;
-import tau.game.Tile;
+import tau.game.field.GameField;
+import tau.game.field.Tile;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

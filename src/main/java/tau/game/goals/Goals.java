@@ -1,6 +1,6 @@
 package tau.game.goals;
 
-import tau.game.GameField;
+import tau.game.field.GameField;
 import tau.game.units.Unit;
 
 public class Goals {

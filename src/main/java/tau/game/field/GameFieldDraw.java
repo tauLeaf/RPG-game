@@ -1,8 +1,8 @@
-package tau.game;
+package tau.game.field;
 
 import tau.game.units.Unit;
-import tau.game.units.infantrymen.Ironclad;
-import tau.game.units.infantrymen.Swordsman;
+import tau.game.units.infantry.Ironclad;
+import tau.game.units.infantry.Swordsman;
 
 public class GameFieldDraw {
     private static GameField field;

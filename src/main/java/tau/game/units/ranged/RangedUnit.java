@@ -1,18 +1,14 @@
 package tau.game.units.ranged;
 
+import tau.game.units.Attackable;
 import tau.game.units.Unit;
 
-public class RangedUnit extends Unit {
+public abstract class RangedUnit extends Unit implements Attackable {
     public RangedUnit(int x, int y) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
     }
 
-    public void attack() {
+    public abstract void attack(Unit unit);
 
-    }
-
-    public void defend() {
-
-    }
+    public abstract void defend();
 }
